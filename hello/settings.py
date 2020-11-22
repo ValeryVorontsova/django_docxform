@@ -25,7 +25,7 @@ SECRET_KEY = '3x%&#iq^!g_820btqfh4@l8_0qezv(%!x%mb54)f3uc=cou)kp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://tranquil-headland-94339.herokuapp.com','127.0.0.1']
 
 
 # Application definition
