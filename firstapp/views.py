@@ -30,12 +30,12 @@ def index(request):
             t3 = Document(r"DOC3CHANGE.docx")
             t2 = Document(r"PRAVA.docx")
             if check1 == True:
+                t1.add_page_break()
                 for p in t2.paragraphs:
-                    t1.add_page_break()
                     t1.add_paragraph(p.text, p.style)
             if check2 == True:
+                t1.add_page_break()
                 for p in t3.paragraphs:
-                    t1.add_page_break()
                     t1.add_paragraph(p.text, p.style)
             for i in photos:
                 if i == "front":
