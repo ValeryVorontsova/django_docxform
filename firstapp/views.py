@@ -29,24 +29,31 @@ def index(request):
             t2 = Document(r"PRAVA.docx")
             if check1 == True:
                 for p in t2.paragraphs:
+                    t1.add_page_break()
                     t1.add_paragraph(p.text, p.style)
             if check2 == True:
                 for p in t3.paragraphs:
+                    t1.add_page_break()
                     t1.add_paragraph(p.text, p.style)
             for i in photos:
                 if i == "front":
+                    t1.add_page_break()
                     t1.add_picture("front.jpg", width=Inches(4.0))
                 if i == "1floor":
+                    t1.add_page_break()
                     t1.add_picture("1floor.png", width=Inches(4.0))
                 if i == "2floor":
+                    t1.add_page_break()
                     t1.add_picture("2floor.png", width=Inches(4.0))
             t1.save("FINAL.docx")
             msg = EmailMultiAlternatives("Документы", "Ваш пакет документов", "vorontsova000@gmail.com", [email])
-            msg.attach_file('FINAL.docx')
-            msg.send()
-            #send_mail('Subject here', 'Here is the message.', 'from@example.com',
-                      #[email], fail_silently=False)
-            return HttpResponse("<h2>Ваш пакет документов успешно отправлен на {0}</h2>".format(email))
+            if final == "Send":
+                msg = EmailMultiAlternatives("Документы", "Ваш пакет документов", "vorontsova000@gmail.com", [email])
+                msg.attach_file('FINAL.docx')
+                msg.send()
+                return HttpResponse("<h2>Ваш пакет документов успешно отправлен на {0}</h2>".format(email))
+            else:
+                return FileResponse(open("FINAL.docx", 'rb'))
     else:
         userform = UserForm()
         return render(request, "index.html", {"form": userform})
