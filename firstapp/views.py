@@ -17,16 +17,16 @@ def index(request):
             check1 = form.cleaned_data['check1']
             check2 = form.cleaned_data['check2']
             photos = form.cleaned_data.get('photos')
-            doc1 = DocxTemplate(r"C:\Users\Валерия\hello\DOC.docx")
-            doc3 = DocxTemplate(r"C:\Users\Валерия\hello\TZ.docx")
+            doc1 = DocxTemplate(r"DOC.docx")
+            doc3 = DocxTemplate(r"TZ.docx")
             context = {'name': name, 'surname': surname,'email':email}
             doc1.render(context)
             doc3.render(context)
-            doc1.save("C:/Users/Валерия/hello/DOC1CHANGE.docx")
-            doc3.save("C:/Users/Валерия/hello/DOC3CHANGE.docx")
-            t1 = Document(r"C:\Users\Валерия\hello\DOC1CHANGE.docx")
-            t3 = Document(r"C:\Users\Валерия\hello\DOC3CHANGE.docx")
-            t2 = Document(r"C:\Users\Валерия\hello\PRAVA.docx")
+            doc1.save("DOC1CHANGE.docx")
+            doc3.save("DOC3CHANGE.docx")
+            t1 = Document(r"DOC1CHANGE.docx")
+            t3 = Document(r"DOC3CHANGE.docx")
+            t2 = Document(r"PRAVA.docx")
             if check1 == True:
                 for p in t2.paragraphs:
                     t1.add_paragraph(p.text, p.style)
@@ -35,14 +35,14 @@ def index(request):
                     t1.add_paragraph(p.text, p.style)
             for i in photos:
                 if i == "front":
-                    t1.add_picture("C:/Users/Валерия/hello/front.jpg", width=Inches(4.0))
+                    t1.add_picture("front.jpg", width=Inches(4.0))
                 if i == "1floor":
-                    t1.add_picture("C:/Users/Валерия/hello/1floor.png", width=Inches(4.0))
+                    t1.add_picture("1floor.png", width=Inches(4.0))
                 if i == "2floor":
-                    t1.add_picture("C:/Users/Валерия/hello/2floor.png", width=Inches(4.0))
-            t1.save("C:/Users/Валерия/hello/FINAL.docx")
+                    t1.add_picture("2floor.png", width=Inches(4.0))
+            t1.save("FINAL.docx")
             msg = EmailMultiAlternatives("Документы", "Ваш пакет документов", "vorontsova000@gmail.com", [email])
-            msg.attach_file('C:/Users/Валерия/hello/FINAL.docx')
+            msg.attach_file('FINAL.docx')
             msg.send()
             #send_mail('Subject here', 'Here is the message.', 'from@example.com',
                       #[email], fail_silently=False)
