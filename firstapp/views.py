@@ -17,6 +17,7 @@ def index(request):
             check1 = form.cleaned_data['check1']
             check2 = form.cleaned_data['check2']
             photos = form.cleaned_data.get('photos')
+            final = form.cleaned_data.get('final')
             doc1 = DocxTemplate(r"DOC.docx")
             doc3 = DocxTemplate(r"TZ.docx")
             context = {'name': name, 'surname': surname,'email':email}
